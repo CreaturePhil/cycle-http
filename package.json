@@ -1,7 +1,7 @@
 {
   "name": "web-starter-kit",
   "version": "1.0.0",
-  "description": "A skeleton of a web application.",
+  "description": "Cycle.js Hello World Application",
   "main": "src/index.js",
   "scripts": {
     "test": "standard",
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/CreaturePhil/web-starter-kit.git"
+    "url": "https://github.com/CreaturePhil/cycle-hello-world.git"
   },
   "author": "Philip La <birkal@outlook.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CreaturePhil/web-starter-kit.git/issues"
+    "url": "https://github.com/CreaturePhil/cycle-hello-world.git/issues"
   },
   "private": true,
   "devDependencies": {
