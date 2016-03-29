@@ -1,5 +1,5 @@
 {
-  "name": "web-starter-kit",
+  "name": "cycle-counter",
   "version": "1.0.0",
   "description": "Cycle.js Hello World Application",
   "main": "src/index.js",

@@ -1,21 +1,31 @@
 import Cycle from '@cycle/core'
-import {makeDOMDriver, label, input, h1, hr, div} from '@cycle/dom'
+import {makeDOMDriver, button, p, label, div} from '@cycle/dom'
+import Rx from 'rx'
 
 function main (sources) {
-  const inputEv$ = sources.DOM
-    .select('.field')
-    .events('input')
-  const name$ = inputEv$
-    .map((ev) => ev.target.value)
-    .startWith('')
+  const decrementClicks$ = sources.DOM
+    .select('.decrement')
+    .events('click')
+  const incrementClicks$ = sources.DOM
+    .select('.increment')
+    .events('click')
+  const decrementAction$ = decrementClicks$.map((ev) => -1)
+  const incrementAction$ = incrementClicks$.map((ev) => +1)
+  const number$ = Rx.Observable.merge(
+    decrementAction$,
+    incrementAction$
+  )
+  .startWith(0)
+  .scan((acc, cur) => acc + cur)
 
   const sinks = {
-    DOM: name$.map((name) =>
+    DOM: number$.map((number) =>
       div([
-        label('Name: '),
-        input('.field', {type: 'text'}),
-        hr(),
-        h1(`Hello ${name}!`)
+        button('.decrement', 'Decrement'),
+        button('.increment', 'Increment'),
+        p([
+          label(String(number))
+        ])
       ])
     )
   }
