@@ -1,7 +1,7 @@
-# Cycle.js Counter
+# Cycle.js Http
 
-[![Build Status](https://img.shields.io/travis/CreaturePhil/cycle-counter/master.svg?style=flat-square)](https://travis-ci.org/CreaturePhil/cycle-counter)
-[![Dependency Status](https://david-dm.org/CreaturePhil/cycle-counter.svg?style=flat-square)](https://david-dm.org/CreaturePhil/cycle-counter)
-[![devDependency Status](https://david-dm.org/CreaturePhil/cycle-counter/dev-status.svg?style=flat-square)](https://david-dm.org/CreaturePhil/cycle-counter#info=devDependencies)
+[![Build Status](https://img.shields.io/travis/CreaturePhil/cycle-http/master.svg?style=flat-square)](https://travis-ci.org/CreaturePhil/cycle-http)
+[![Dependency Status](https://david-dm.org/CreaturePhil/cycle-http.svg?style=flat-square)](https://david-dm.org/CreaturePhil/cycle-http)
+[![devDependency Status](https://david-dm.org/CreaturePhil/cycle-http/dev-status.svg?style=flat-square)](https://david-dm.org/CreaturePhil/cycle-http#info=devDependencies)
 
-Cycle.js Counter Application
+Cycle.js Http Application

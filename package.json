@@ -1,7 +1,7 @@
 {
-  "name": "cycle-counter",
+  "name": "cycle-http",
   "version": "1.0.0",
-  "description": "Cycle.js Hello World Application",
+  "description": "Cycle.js Http Application",
   "main": "src/index.js",
   "scripts": {
     "test": "standard",
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/CreaturePhil/cycle-hello-world.git"
+    "url": "https://github.com/CreaturePhil/cycle-http.git"
   },
   "author": "Philip La <birkal@outlook.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CreaturePhil/cycle-hello-world.git/issues"
+    "url": "https://github.com/CreaturePhil/cycle-http.git/issues"
   },
   "private": true,
   "devDependencies": {
@@ -29,6 +29,7 @@
   "dependencies": {
     "@cycle/core": "^6.0.3",
     "@cycle/dom": "^9.2.2",
+    "@cycle/http": "^8.2.2",
     "rx": "^4.1.0"
   }
 }

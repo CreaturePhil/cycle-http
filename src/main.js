@@ -1,40 +1,50 @@
 import Cycle from '@cycle/core'
-import {makeDOMDriver, button, p, label, div} from '@cycle/dom'
-import Rx from 'rx'
+import {makeDOMDriver, button, h1, h4, a, div} from '@cycle/dom'
+import {makeHTTPDriver} from '@cycle/http'
 
 function main (sources) {
-  const decrementClicks$ = sources.DOM
-    .select('.decrement')
+  const clickEvent$ = sources.DOM
+    .select('.get-first')
     .events('click')
-  const incrementClicks$ = sources.DOM
-    .select('.increment')
-    .events('click')
-  const decrementAction$ = decrementClicks$.map((ev) => -1)
-  const incrementAction$ = incrementClicks$.map((ev) => +1)
-  const number$ = Rx.Observable.merge(
-    decrementAction$,
-    incrementAction$
-  )
-  .startWith(0)
-  .scan((acc, cur) => acc + cur)
+
+  const url = 'http://jsonplaceholder.typicode.com/users/1'
+
+  // could be move to the bottom like DOM firstUser$.map
+  const request$ = clickEvent$.map(() => ({
+    url,
+    method: 'GET'
+  }))
+
+  const response$$ = sources.HTTP
+    .filter((response$) => response$.request.url === url)
+
+  // switch is like flatten
+  const response$ = response$$.switch()
+
+  const firstUser$ = response$
+    .map((response) => response.body)
+    .startWith(null)
 
   const sinks = {
-    DOM: number$.map((number) =>
+    DOM: firstUser$.map((firstUser) =>
       div([
-        button('.decrement', 'Decrement'),
-        button('.increment', 'Increment'),
-        p([
-          label(String(number))
+        button('.get-first', 'Get first user'),
+        firstUser === null ? null : div('.user-details', [
+          h1('.user-name', firstUser.name),
+          h4('.user-email', firstUser.email),
+          a('.user-website', {href: firstUser.website}, firstUser.website)
         ])
       ])
-    )
+    ),
+    HTTP: request$
   }
 
   return sinks
 }
 
 const drivers = {
-  DOM: makeDOMDriver('#app')
+  DOM: makeDOMDriver('#app'),
+  HTTP: makeHTTPDriver()
 }
 
 Cycle.run(main, drivers)
